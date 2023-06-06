@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=1024" />
+
+		<title>Binary Multiplication</title>
+
+		<!-- FAVICON -->
+		<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png" />
+
+		<!-- STYLE SHEETS -->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open Sans" />
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+		/>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+
+		<link rel="stylesheet" href="style/style.css" />
+		<link rel="stylesheet" href="style/header.css" />
+		<link rel="stylesheet" href="style/footer.css" />
+
+		<link rel="stylesheet" href="style/body.css" />
+		<link rel="stylesheet" href="style/input.css" />
+		<link rel="stylesheet" href="style/results.css" />
+
+		<!-- PRELOAD ICONS -->
+		<link rel="prefetch" href="assets/title-yellow.png" />
+		<link rel="prefetch" href="assets/pencil-yellow.png" />
+		<link rel="prefetch" href="assets/booths-yellow.png" />
+		<link rel="prefetch" href="assets/extended-booths-yellow.png" />
+		<link rel="prefetch" href="assets/about-yellow.png" />
+		<link rel="prefetch" href="assets/save-yellow.png" />
+
+		<link rel="prefetch" href="assets/title.png" />
+		<link rel="prefetch" href="assets/pencil.png" />
+		<link rel="prefetch" href="assets/booths.png" />
+		<link rel="prefetch" href="assets/extended-booths.png" />
+		<link rel="prefetch" href="assets/about.png" />
+		<link rel="prefetch" href="assets/save.png" />
+
+		<!-- SCRIPTS -->
+		<!-- The order of inclusion of the scripts matters. -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+		<!-- JS files containing constants and strings. Should be included before all other scripts -->
+		<script src="scripts/constants.js"></script>
+		<script src="scripts/error-strings.js"></script>
+		<script src="scripts/colors.js"></script>
+		<script src="scripts/algo-strings.js"></script>
+
+		<!-- JS files related to behaviors in the header (navigation bar) and footer -->
+		<script src="scripts/animate.js"></script>
+		<script src="scripts/mul-methods.js"></script>
+		<script src="scripts/dropdown.js"></script>
+		<script src="scripts/header.js"></script>
+
+		<!-- JS files related to behaviors in the input section -->
+		<script src="scripts/binary.js"></script>
+		<script src="scripts/focus.js"></script>
+		<script src="scripts/input-util.js"></script>
+		<script src="scripts/input.js"></script>
+
+		<!-- JS files related to behaviors in the demonstration of the multiplication algorithms -->
+		<script src="scripts/pencil-and-paper.js"></script>
+		<script src="scripts/booths.js"></script>
+		<script src="scripts/extended-booths.js"></script>
+
+		<!-- Should be included after the scripts for the multiplication algorithms -->
+		<script src="scripts/demo-util.js"></script>
+		<script src="scripts/demo.js"></script>
+		<script src="scripts/export-util.js"></script>
+		<script src="scripts/export.js"></script>
+	</head>
+
+	<body>
+		<!-- HEADER/NAVIGATION BAR (TOP SECTION) -->
+		<div id="header" class="colored flex-container">
+			<div id="logo">
+				<img id="title-logo" src="assets/title.png" />
+			</div>
+
+			<div id="title">
+				<div class="inner">
+						<span id="title-text"></span>
+				</div>
+			</div>
+
+			<div class="small-padding">
+				<div class="inner">
+					<span></span>
+				</div>
+			</div>
+
+			<div id="pencil-and-paper" class="hidden mul-methods">
+				<div class="inner">
+					<a class="no-decor">
+						<img id="pencil-logo" src="assets/pencil-yellow.png" />
+					</a>
+				</div>
+				<div class="inner">
+					<a class="no-decor">
+						<span id="pencil-text" class="selected">Pencil and Paper</span>
+					</a>
+				</div>
+			</div>
+
+			<div id="booths" class="hidden mul-methods">
+				<div class="inner">
+					<a class="no-decor">
+						<img id="booths-logo" src="assets/booths.png" />
+					</a>
+				</div>
+				<div class="inner">
+					<a class="no-decor">
+						<span id="booths-text">Booth's</span>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<!-- INPUT AREA (LEFT SECTION) -->
+		<div id="input-numbers" class="hidden">
+			<form id="input-numbers-dec-bin">
+				<div id="multiplicand-div">
+					<span>Multiplicand</span>
+					<br />
+				</div>
+				<div id="multiplicand-container" class="input-container">
+					<p>
+						<label id="multiplicand-dec-label">
+							Decimal
+							<span class="tab-18"></span>
+						</label>
+						<input
+							type="text"
+							id="multiplicand-dec"
+							autocomplete="off"
+							oninput="isValidDec(this, 'multiplicand', value)"
+						/>
+					</p>
+					<p>
+						<label>Binary</label>
+						<input
+							type="text"
+							id="multiplicand-bin"
+							autocomplete="off"
+							oninput="isValidBin(this, 'multiplicand', value)"
+						/>
+					</p>
+				</div>
+
+				<div class="error" id="multiplicand-error">
+					<p></p>
+				</div>
+
+				<br />
+
+				<div id="multiplier-div">
+					<span>Multiplier</span>
+					<br />
+				</div>
+				<div id="multiplier-container" class="input-container">
+					<p>
+						<label id="multiplier-dec-label">
+							Decimal
+							<span class="tab-18"></span>
+						</label>
+						<input
+							type="text"
+							id="multiplier-dec"
+							autocomplete="off"
+							oninput="isValidDec(this, 'multiplier', value)"
+						/>
+					</p>
+					<p>
+						<label id="multiplier-bin-label">Binary</label>
+						<input
+							type="text"
+							id="multiplier-bin"
+							autocomplete="off"
+							oninput="isValidBin(this, 'multiplier', value)"
+						/>
+					</p>
+				</div>
+
+				<div class="error" id="multiplier-error">
+					<p></p>
+				</div>
+
+				<br />
+
+				<div id="multiply-div">
+					<div>
+						<button id="multiply" type="button" disabled>MULTIPLY</button>
+					</div>
+				</div>
+
+				<br />
+
+				<div id="input-values" class="tracking-only">
+					<span id="multiplicand-dec-value"></span>
+					<span id="multiplicand-bin-value"></span>
+					<span id="multiplier-bin-value"></span>
+					<span id="multiplier-dec-value"></span>
+					<span id="multiplier-zero-appended"></span>
+					<span id="multiplier-for-recoding"></span>
+					<span id="booths-recoding"></span>
+					<span id="extended-booths-recoding"></span>
+					<span id="tracking-product"></span>
+					<span id="multiplier-equalized"></span>
+					<span id="multiplicand-equalized"></span>
+					<span id="tracking-summands"></span>
+				</div>
+			</form>
+		</div>
+
+		<!-- RESULTS AREA (RIGHT SECTION) -->
+		<div id="workspace" class="flex-container">
+			<div id="results" class="hidden">
+				<div id="algo-value" class="tracking-only"></div>
+
+				<div id="algo-name"></div>
+				<div>
+					<p id="algo-steps"></p>
+				</div>
+			</div>
+		</div>
+
+		<!-- FOOTER (BOTTOM SECTION) -->
+		<div id="footer" class="colored flex-container">
+			<div id="playback-control" class="hidden">
+				<div class="inner">
+					<i id="prev-step" class="fa fa-step-backward" class="play-control"></i>
+					&nbsp;&nbsp;
+					<!-- Only one of these two spans (namely, description and step) will be displayed at any given time. -->
+					<span id="step">
+						Step
+						<input id="step-number" type="number" value="1" />
+						of
+						<span id="total-steps">30</span>
+					</span>
+					&nbsp;&nbsp;
+					<i id="next-step" class="fa fa-step-forward" class="play-control"></i>
+				</div>
+			</div>
+
+			<div id="step-number-value">
+				1
+				<span class="material-icons">check_circle_outline</span>
+				<span class="tab-13"></span>
+			</div>
+		</div>
+	</body>
+</html>

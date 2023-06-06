@@ -1,0 +1,189 @@
+/* General style sheet for the entire website */
+
+@import './colors.css';
+
+html,
+body {
+	margin: 0px;
+	padding: 0px;
+	font-family: 'Open Sans', Arial, sans-serif;
+}
+
+body {
+	background-color: var(--gray-bg);
+	color: var(--green-emphasis);
+}
+
+/* Anchor elements */
+a {
+	display: inline-block;
+}
+
+a:hover {
+	color: var(--yellow-emphasis);
+}
+
+a.trivia {
+	color: var(--green-emphasis);
+}
+
+a.menu {
+	color: white;
+}
+
+a.with-underline {
+	text-decoration: underline;
+	cursor: pointer;
+	color: var(--green-emphasis) !important;
+}
+
+.no-decor {
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.no-hover:hover {
+	color: var(--green-emphasis);
+}
+
+/* Icons */
+i {
+	cursor: pointer;
+}
+
+i:hover {
+	color: var(--yellow-emphasis);
+}
+
+.selected {
+	color: var(--yellow-emphasis) !important;
+}
+
+/* Input fields */
+input {
+	-moz-appearance: textfield;
+	font-size: 16px;
+	font-family: 'Open Sans';
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0px;
+}
+
+/* Divisions */
+#header,
+#footer {
+	user-select: none; /* Prevent div from being selected when children are clicked. */
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	-o-user-select: none;
+	z-index: 100;
+}
+
+.flex-container {
+	display: flex;
+	padding-left: 40px;
+	font-size: 18px;
+	flex-wrap: wrap;
+}
+
+.flex-container > div {
+	text-align: left;
+	display: table;
+}
+
+.inner {
+	height: 100%;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.error {
+	color: var(--red-emphasis);
+	font-weight: bold;
+	font-size: 14px;
+	margin-top: 10px;
+	margin-left: 21px;
+	margin-bottom: -10px;
+}
+
+.tracking-only {
+	display: none !important;
+}
+
+.hanging-indent {
+	padding-left: 28px;
+	text-indent: -28px;
+}
+
+/* Header and footer */
+.colored {
+	background-color: var(--green-bg);
+	color: white;
+}
+
+/* Horizontal spacing */
+.tab-9 {
+	padding-left: 9px;
+}
+
+.tab-10 {
+	padding-left: 10px;
+}
+
+.tab-12 {
+	padding-left: 12px;
+}
+
+.tab-13 {
+	padding-left: 13px;
+}
+
+.tab-18 {
+	padding-left: 18px;
+}
+
+.tab-27 {
+	padding-left: 27px;
+}
+
+.tab-29 {
+	padding-left: 29px;
+}
+
+/* Special classes */
+.code {
+	font-family: 'Courier New', Arial, sans-serif;
+}
+
+.hidden {
+	visibility: hidden;
+}
+
+.no-bold {
+	font-weight: normal !important;
+}
+
+.right-align {
+	text-align: right !important;
+}
+
+.bottom-border {
+	border-bottom: 1px solid var(--green-emphasis);
+}
+
+.no-underline {
+	text-decoration: none !important;
+}
+
+.not-clickable {
+	cursor: default !important;
+}
+
+.material-icons {
+	vertical-align: middle;
+	margin-top: -5px;
+}
